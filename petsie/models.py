@@ -10,6 +10,7 @@ class User(AbstractUser):
     city = models.TextField(null=True)
     state_abbr = models.CharField(max_length=24, null=True)
     zipcode = models.TextField(null=True)
+    # You should look into Django's built-in ChoiceField, which would be a better option for usertype than a TextField
     usertype = models.TextField(null=True)
 
     def __unicode__(self):
