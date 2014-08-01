@@ -1,0 +1,139 @@
+{% extends 'base_template.html' %}
+
+
+
+
+{% block my_title %}
+
+{% endblock my_title %}
+
+{% block content %}
+
+
+    <script src="../static/js/jquery-1.11.1.js"></script>
+    <script>
+function initialize() {
+
+    var mapOptions = {
+        zoom: 11,
+        center: new google.maps.LatLng(37.7833, -122.4167)
+    };
+    geocoder = new google.maps.Geocoder();
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+   {% for i in users %}
+   codeAddress('{{ i.address }}, {{ i.city }}');
+   {% endfor %}
+}
+
+    </script>
+
+    <style type="text/css">
+      html { height: 50% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2q6yiq48VXAScdIAXmnq7BVyGmzvI9vk">
+    </script>
+
+    <script type="text/javascript" src="../static/js/index.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
+
+
+   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+          </button>
+
+         <a class="navbar-brand" href="{% url 'home' %}">home</a>
+         <a class="navbar-brand" href="{% url 'aboutus' %}">About us</a>
+         <a class="navbar-brand" href="{% url 'logout' %}">Sign out</a>
+         <div style="margin-left: 700px"><a class="navbar-brand" style="color: greenyellow"> Welcome {{user.first_name}} </a></div>
+
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="form">
+            </form>
+        </div>
+    </div>
+ </div>
+
+<h4 style="margin-left:50px">Here is a list of available pet-sitters in your area.</h4>
+
+<br>
+
+ <div class="container">
+     <div class="col-md-6">
+
+
+<style>
+
+th, td
+{
+padding:10px;
+}
+</style>
+
+<table >
+
+
+   {% for i in users %}
+
+ <tr>
+  <td>{{ i.first_name }}</td>
+  <td> {{ i.last_name }}</td>
+  <td> {{ i.city }}</td>
+   <td> {{ i.email }}</td>
+
+</tr>
+      {% endfor %}
+
+</table>
+
+
+
+
+
+        <!--<input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode" />-->
+        <!--<button id="search_button"> Search    </button>-->
+
+
+     </div>
+     <div class="col-md-6">
+         <div style="height:300px;" id="map-canvas"></div>
+         <br>
+
+         Address: <input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode" />
+
+        <input type="button" onclick="codeAddress()" id="inputButtonGeocode" style="width:150px"
+        title="Click to Geocode" value="Click to Geocode" />
+
+     </div>
+ </div>
+{#<script>#}
+{#$(document).ready(function() {#}
+{#    alert('alarm!')#}
+{#});#}
+{#</script>#}
+{#        {% for i in users %}#}
+{#            <script type="text/javascript">; codeAddress('{{ i.address }}, {{ i.city }}');</script>#}
+{#        {% endfor %}#}
+
+
+
+
+
+
+
+{% endblock content %}

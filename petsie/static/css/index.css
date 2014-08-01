@@ -1,0 +1,15 @@
+
+
+body {
+    background-image:url('../img/petfamily.jpg');
+    background-size: 100%;
+
+}
+
+/*.askLabel {*/
+    /*margin:0 0 1px; min-height:18px;*/
+/*}*/
+
+.navbar-brand {
+    float: left;
+}
