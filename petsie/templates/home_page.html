@@ -1,6 +1,10 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 
+
+<!-- All this navigation and other repeated content should live in base_template.html. The point of that file
+is that it holds all your repeated code, so you don't have to repeat it in each file.
+-->
 {% block content %}
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
@@ -39,6 +43,7 @@
 <br>
 
 
+        <!-- Styling should be done in external CSS or LESS files unless there is some overwhelming reason not to do so -->
         <div style="padding: 10px; background-color: white"><h1 style="text-align: center; font-family: serif">
         Petsie.com
         </h1>
