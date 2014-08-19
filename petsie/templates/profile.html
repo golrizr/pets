@@ -10,8 +10,11 @@ PROFILE PAGE
 {% block content %}
 
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/profile.css"/>
+
 
 
    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -24,7 +27,7 @@ PROFILE PAGE
 {#            <span class="icon-bar"></span>#}
           </button>
 
-         <a class="navbar-brand" href="{% url 'home' %}">home</a>
+         <a class="navbar-brand" href="{% url 'home' %}">Home</a>
          <a class="navbar-brand" href="{% url 'aboutus' %}">About us</a>
          <a class="navbar-brand"> Welcome {{user.first_name}} </a>
          <a class="navbar-brand" href="{% url 'logout' %}">Sign out</a>
@@ -40,21 +43,44 @@ PROFILE PAGE
     </div>
 
 
+<div class="container1">
+    <div class="profile-box">
+        <div class="profile-cover-image">
+            <img src="{{user.image.url}}" class="coverImageHei">
+        </div>
+        <div class="profile-picture">
+            {% for i in pet %}
+            <img src="{{i.pet_image.url}}" class="coverImageH">
+            {% endfor %}
+        </div>
+
+        <div class="profile-content">
+            <p> {{ user.username }}</p>
+            <p> Name: {{ user.first_name }} {{ user.last_name }}</p>
+            <p> Address: {{ user.address }} </p>
+            <p> {{ user.city }} {{ user.state_abbr }} {{ user.zipcode }}</p>
+            <p> Phone Number: {{ user.phone_number }}</p>
+            <p> Email: {{ user.email }}</p>
+
+            <a href="{% url "edit_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Profile" class="btn btn-info btn-lg input-lg form-control">
+{#            <input type="submit" value="Edit Profile">#}
+            </a>
+
+            <a href="{% url "upload_pet_profile" %}"><input style="font-family: arial "type="submit" value="Upload Pet Profile" class="btn btn-info btn-lg input-lg form-control">
+
+            </a>
 
 
 
-    <p>
+{#        if statemeent for if pet.count>0#}
+            {% for i in pet %}
+            <p> Name: {{ i.name }} </p>
+            <p> Age: {{ i.age }}</p>
+            <p> About: {{ i.description }}</p>
+            {% endfor %}
 
-    If user type = pet owner,
-    display: Thank you for signing up. Here is your information.
-    display:
-            View pet-sitters in your area
-            indicate dates you need sitter
-
-    else:
-    display: Thank you for signing up. Here is your information.
-
-    </p>
-
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

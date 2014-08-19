@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 
 from django.contrib import admin
 admin.autodiscover()
@@ -25,7 +27,14 @@ urlpatterns = patterns('',
     url(r'^pet_sitters', 'petsie.views.pet_sitters', name='pet_sitters'),
     url(r'^pet_owners', 'petsie.views.pet_owners', name='pet_owners'),
 
+    url(r'^edit_profile/(?P<user_id>\w+)/edit/$', 'petsie.views.edit_profile', name='edit_profile'),
+    url(r'^upload_pet_profile/$', 'petsie.views.upload_pet_profile', name='upload_pet_profile')
+
+
 
 
 
 )
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

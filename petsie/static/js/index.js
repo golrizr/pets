@@ -20,9 +20,9 @@ var map;
 
 function codeAddress(address) {
 
-    var sAddress = document.getElementById("inputTextAddress").value;
-    sAddress = address || sAddress;
-    geocoder.geocode({'address': sAddress},function(results, status)
+//    var sAddress = document.getElementById("inputTextAddress").value;
+//    sAddress = address || sAddress;
+    geocoder.geocode({'address': address},function(results, status)
 
     {
      if (status == google.maps.GeocoderStatus.OK) {
