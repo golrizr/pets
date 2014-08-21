@@ -1,8 +1,5 @@
 {% extends 'base_template.html' %}
 
-
-
-
 {% block my_title %}
 
 {% endblock my_title %}
@@ -12,11 +9,14 @@
 
     <script src="../static/js/jquery-1.11.1.js"></script>
     <script>
+
 function initialize() {
 
     var mapOptions = {
         zoom: 11,
         center: new google.maps.LatLng(37.7833, -122.4167)
+{#        center: new google.maps.LatLng(2.7833, -1800.4167)#}
+
     };
     geocoder = new google.maps.Geocoder();
 
@@ -24,7 +24,7 @@ function initialize() {
         mapOptions);
 
    {% for i in users %}
-   codeAddress('{{ i.address }}, {{ i.city }}');
+   codeAddress('{{ i.address }}, {{ i.city }}', '{{ i.first_name }}','{{ i.email }}', '{{ i.image }}', '{{ i.id }}');
    {% endfor %}
 }
 
@@ -33,7 +33,7 @@ function initialize() {
     <style type="text/css">
       html { height: 50% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
+      #map-canvas { height: 500px !important}
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2q6yiq48VXAScdIAXmnq7BVyGmzvI9vk">
@@ -55,7 +55,7 @@ function initialize() {
 {#            <span class="icon-bar"></span>#}
           </button>
 
-         <a class="navbar-brand" href="{% url 'home' %}">home</a>
+         <a class="navbar-brand" href="{% url 'home' %}">Home</a>
          <a class="navbar-brand" href="{% url 'aboutus' %}">About us</a>
          <a class="navbar-brand" href="{% url 'logout' %}">Sign out</a>
          <div style="margin-left: 700px"><a class="navbar-brand" style="color: greenyellow"> Welcome {{user.first_name}} </a></div>
@@ -69,12 +69,14 @@ function initialize() {
     </div>
  </div>
 
-<h4 style="margin-left:50px">Here is a list of available pet-sitters in your area.</h4>
 
 <br>
 
  <div class="container">
      <div class="col-md-6">
+
+
+     <h4>Here is a list of available pet-sitters in your area.</h4>
 
 
 <style>
@@ -121,18 +123,6 @@ padding:10px;
 
      </div>
  </div>
-{#<script>#}
-{#$(document).ready(function() {#}
-{#    alert('alarm!')#}
-{#});#}
-{#</script>#}
-{#        {% for i in users %}#}
-{#            <script type="text/javascript">; codeAddress('{{ i.address }}, {{ i.city }}');</script>#}
-{#        {% endfor %}#}
-
-
-
-
 
 
 

@@ -1,7 +1,8 @@
 
 
 body {
-    background-image:url('../img/petfamily.jpg');
+
+    background:url('../img/petfamily.jpg') no-repeat center center fixed;
     background-size: 100%;
 
 }
@@ -12,4 +13,11 @@ body {
 
 .navbar-brand {
     float: left;
+}
+
+
+.Petsie_bar{
+    position: relative;
+    top: 45px;
+
 }

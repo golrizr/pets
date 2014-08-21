@@ -35,10 +35,17 @@ def register(request):
     })
 
 
+
 @login_required
 def profile(request):
     pet = Pet.objects.filter(owner=request.user)
-    return render(request, 'profile.html', {'pet': pet})
+    return render(request, 'profile.html', {'pet': pet, 'owner': "Pet Owner"},)
+
+
+# @login_required
+# def profile(request):
+#     pet = Pet.objects.filter(owner=request.user)
+#     return render(request, 'profile.html', {'pet': pet, 'owner': "Pet Owner"},)
 
 
 def redirect_type(request):
@@ -48,9 +55,11 @@ def redirect_type(request):
         return redirect('pet_owners')
 
 
+@login_required
 def pet_sitters(request):
     return render(request, 'pet_sitters.html')
 
+@login_required
 def pet_owners(request):
     users = User.objects.filter(usertype='Pet Sitter')
     return render(request, 'pet_owners.html', {'users': users})
@@ -60,7 +69,7 @@ def aboutus(request):
 
 
 
-#The edit functions views:
+@login_required
 def edit_profile(request, user_id):
     user = User.objects.get(id=user_id)
 
@@ -76,7 +85,7 @@ def edit_profile(request, user_id):
     data = {"profile": profile, "form": form}
     return render(request, "edit_profile.html", data)
 
-
+@login_required
 def upload_pet_profile(request):
     if request.method == "POST":
         form = PetProfile(request.POST, request.FILES)
@@ -91,6 +100,29 @@ def upload_pet_profile(request):
 
     else:
         form = PetProfile()
-    data = {"profile": profile, "form": form}
+    data = {"profile": profile, "form": form, "owner": 'Pet Owner'}
     return render(request, 'upload_pet_profile.html', data)
 
+@login_required
+def edit_pet_profile(request, user_id):
+    pet = Pet.objects.filter(owner=user_id)[0]
+
+    if request.method == "POST":
+        form = PetProfile(request.POST, request.FILES, instance=pet)
+        if form.is_valid():
+            if form.save():
+                return redirect("/profile/")
+
+    else:
+
+        form = PetProfile(instance=pet)
+    data = {"form": form}
+    return render(request, "edit_pet_profile.html", data)
+
+@login_required
+def view_sitter(request, user_id):
+    user = User.objects.get(id=user_id)
+    pet = Pet.objects.filter(owner=user)
+    return render(request, 'profile.html', {'user': user, 'pet': pet, 'owner': "Pet Owner"},)
+
+    # return render(request, 'profile.html', {'random_user': user, 'pet': pet, 'owner': "Pet Owner"},)

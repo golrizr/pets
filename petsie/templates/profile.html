@@ -1,4 +1,5 @@
 {% extends 'base_template.html' %}
+{% load staticfiles %}
 
 
 
@@ -12,8 +13,13 @@ PROFILE PAGE
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/profile.css"/>
+{#    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}"/>
+
+
+{#    <link rel="stylesheet" type="text/css" href="../static/css/profile.css"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static "css/profile.css" %}"/>
+
 
 
 
@@ -55,29 +61,56 @@ PROFILE PAGE
         </div>
 
         <div class="profile-content">
-            <p> {{ user.username }}</p>
-            <p> Name: {{ user.first_name }} {{ user.last_name }}</p>
-            <p> Address: {{ user.address }} </p>
-            <p> {{ user.city }} {{ user.state_abbr }} {{ user.zipcode }}</p>
-            <p> Phone Number: {{ user.phone_number }}</p>
-            <p> Email: {{ user.email }}</p>
+{#            <p class="lead"> {{ user.username }}</p>#}
+            <p class="lead"> <strong>Name: </strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p class="lead"> <strong>Address: </strong> {{ user.address }} </p>
+            <p class="lead"> {{ user.city }} {{ user.state_abbr }} {{ user.zipcode }}</p>
+            <p class="lead"> <strong>Phone Number: </strong> {{ user.phone_number }}</p>
+            <p class="lead"> <strong>Email: </strong> {{ user.email }}</p>
 
-            <a href="{% url "edit_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Profile" class="btn btn-info btn-lg input-lg form-control">
-{#            <input type="submit" value="Edit Profile">#}
-            </a>
+            <a href="{% url "edit_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Profile" class="btn btn-info btn-lg input-lg form-control"></a>
 
-            <a href="{% url "upload_pet_profile" %}"><input style="font-family: arial "type="submit" value="Upload Pet Profile" class="btn btn-info btn-lg input-lg form-control">
 
-            </a>
+<br>
+<br>
 
 
 
 {#        if statemeent for if pet.count>0#}
             {% for i in pet %}
-            <p> Name: {{ i.name }} </p>
-            <p> Age: {{ i.age }}</p>
-            <p> About: {{ i.description }}</p>
+            <p class="lead"> <strong>Name:</strong>  {{ i.name }} </p>
+            <p class="lead"> <strong>Age:</strong>  {{ i.age }}</p>
+            <p class="lead"> <strong>About your pet:</strong></p>
+            <p class="lead">{{ i.description }}</p>
             {% endfor %}
+
+
+
+{#            {% ifequal random_profile_owner.id profile_owner.id %}#}
+
+            {% ifequal user.usertype owner %}
+
+                {% if pet %}
+                    <a href="{% url "edit_pet_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Pet Profile" class="btn btn-info btn-lg input-lg form-control"></a>
+                    <a href="{% url "pet_owners" %}"><input style="font-family: arial; margin:5px;" type="submit" value="View Local Pet Sitters" class="btn btn-info btn-lg input-lg form-control"></a>
+
+
+                {% else %}
+                    <a href="{% url "upload_pet_profile" %}"><input style="font-family: arial "type="submit" value="Upload Pet Profile" class="btn btn-info btn-lg input-lg form-control"></a>
+                    <a href="{% url "pet_owners" %}"><input style="font-family: arial; margin:5px;" type="submit" value="View Local Pet Sitters" class="btn btn-info btn-lg input-lg form-control"></a>
+
+                {% endif %}
+
+            {% endifequal %}
+
+{#            {% if user.usertype owner %}#}
+{#                #}
+{#            {% endi %}#}
+
+            
+
+            <br>
+
 
         </div>
     </div>

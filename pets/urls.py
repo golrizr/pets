@@ -28,7 +28,13 @@ urlpatterns = patterns('',
     url(r'^pet_owners', 'petsie.views.pet_owners', name='pet_owners'),
 
     url(r'^edit_profile/(?P<user_id>\w+)/edit/$', 'petsie.views.edit_profile', name='edit_profile'),
-    url(r'^upload_pet_profile/$', 'petsie.views.upload_pet_profile', name='upload_pet_profile')
+    url(r'^upload_pet_profile/$', 'petsie.views.upload_pet_profile', name='upload_pet_profile'),
+    url(r'^edit_pet_profile/(?P<user_id>\w+)/edit/$', 'petsie.views.edit_pet_profile', name='edit_pet_profile'),
+
+
+    url(r'^view_sitter/(?P<user_id>\w+)/$', 'petsie.views.view_sitter', name='view_sitter')
+
+
 
 
 
