@@ -22,7 +22,9 @@
 
          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
          <a class="navbar-brand" href="{% url 'aboutus' %}">About us</a>
-         <a class="navbar-brand" href="{% url 'login' %}">Sign in</a>
+{#         <a class="navbar-brand" href="{% url 'login' %}">Sign in</a>#}
+         <a class="navbar-brand" href="{% url 'logout' %}">Sign out</a>
+
 
         </div>
 
@@ -40,7 +42,8 @@
 
 
 {#<h1>Edit Profile {{ user.username }}</h1>#}
-<h1>Edit Profile</h1>
+{#<h3>Edit Profile</h3>#}
+<br>
 
 <form method="post" class ="horizontal form" enctype="multipart/form-data">
     {% csrf_token %}
@@ -57,6 +60,15 @@
            $("input[name='image']").attr("role","button");
 
        </script>
+
+           <script type="text/javascript">
+
+           $("label").parent().addClass("form-group");
+           $("label").addClass("label-control");
+           $("input[type='radio']").removeClass("input-lg form-control");
+
+       </script>
+
 
     </div>
     </div>

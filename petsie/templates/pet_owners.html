@@ -55,10 +55,13 @@ function initialize() {
 {#            <span class="icon-bar"></span>#}
           </button>
 
+
+         <a class="navbar-brand"> Welcome {{user.first_name}} </a>
          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
          <a class="navbar-brand" href="{% url 'aboutus' %}">About us</a>
          <a class="navbar-brand" href="{% url 'logout' %}">Sign out</a>
-         <div style="margin-left: 700px"><a class="navbar-brand" style="color: greenyellow"> Welcome {{user.first_name}} </a></div>
+
+{#         <div style="margin-left: 700px"><a class="navbar-brand" style="color: greenyellow"> Welcome {{user.first_name}} </a></div>#}
 
         </div>
 
@@ -76,7 +79,7 @@ function initialize() {
      <div class="col-md-6">
 
 
-     <h4>Here is a list of available pet-sitters in your area.</h4>
+     <h4>List of available pet-sitters in your area:</h4>
 
 
 <style>

@@ -32,11 +32,8 @@ urlpatterns = patterns('',
     url(r'^edit_pet_profile/(?P<user_id>\w+)/edit/$', 'petsie.views.edit_pet_profile', name='edit_pet_profile'),
 
 
-    url(r'^view_sitter/(?P<user_id>\w+)/$', 'petsie.views.view_sitter', name='view_sitter')
-
-
-
-
+    url(r'^view_sitter_profile/(?P<user_id>\w+)/$', 'petsie.views.view_sitter_profile', name='view_sitter_profile'),
+    url(r'^contact_petsitter/$', 'petsie.views.contact_petsitter', name='contact_petsitter'),
 
 
 

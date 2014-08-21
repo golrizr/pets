@@ -69,7 +69,7 @@ PROFILE PAGE
             <p class="lead"> <strong>Email: </strong> {{ user.email }}</p>
 
             <a href="{% url "edit_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Profile" class="btn btn-info btn-lg input-lg form-control"></a>
-
+{#            <a href="{% url "edit_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Profile" class="btn btn-large btn-block" ></a>#}
 
 <br>
 <br>
@@ -93,7 +93,6 @@ PROFILE PAGE
                 {% if pet %}
                     <a href="{% url "edit_pet_profile" user.id %}"><input style="font-family: arial "type="submit" value="Edit Pet Profile" class="btn btn-info btn-lg input-lg form-control"></a>
                     <a href="{% url "pet_owners" %}"><input style="font-family: arial; margin:5px;" type="submit" value="View Local Pet Sitters" class="btn btn-info btn-lg input-lg form-control"></a>
-
 
                 {% else %}
                     <a href="{% url "upload_pet_profile" %}"><input style="font-family: arial "type="submit" value="Upload Pet Profile" class="btn btn-info btn-lg input-lg form-control"></a>

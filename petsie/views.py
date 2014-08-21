@@ -120,9 +120,15 @@ def edit_pet_profile(request, user_id):
     return render(request, "edit_pet_profile.html", data)
 
 @login_required
-def view_sitter(request, user_id):
-    user = User.objects.get(id=user_id)
-    pet = Pet.objects.filter(owner=user)
-    return render(request, 'profile.html', {'user': user, 'pet': pet, 'owner': "Pet Owner"},)
+def view_sitter_profile(request, user_id):
+    pet_owner_user = User.objects.get(id=user_id)
+    pet = Pet.objects.filter(owner=pet_owner_user)
+    # return render(request, 'profile.html', {'user': user, 'pet': pet, 'owner': "Pet Owner"},)
+
+    return render(request, 'view_sitter_profile.html', {'pet_owner_user': pet_owner_user, 'pet': pet, 'owner': "Pet Owner"},)
+
 
     # return render(request, 'profile.html', {'random_user': user, 'pet': pet, 'owner': "Pet Owner"},)
+
+def contact_petsitter(request):
+    return render(request, 'contact_petsitter.html')

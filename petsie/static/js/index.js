@@ -30,7 +30,8 @@ function codeAddress(address, firstname, email, image, id) {
          map.setCenter(results[0].geometry.location);
          console.log(results);
 
-         var pet_sitter_info = firstname + ", " + email +"<div><a href='/view_sitter/"+id +"'" + "><img style='height:100px' src='/media/" +image+"'" +"/></a></div>";
+//         var pet_sitter_info = firstname + ", " + email +"<div><a href='/view_sitter_profile/"+id +"'" + "><img style='height:100px' src='/media/" +image+"'" +"/></a></div>";
+         var pet_sitter_info = firstname + ", " + email +"<div><a href='/view_sitter_profile/"+id +"'" + "><img style='height:100px' src='/media/" +image+"'" +"/></a></div>";
 
          var infowindow = new google.maps.InfoWindow({
              content: pet_sitter_info
@@ -38,7 +39,7 @@ function codeAddress(address, firstname, email, image, id) {
          var marker = new google.maps.Marker({
              map:map,
              position: results[0].geometry.location,
-             title: "some title"
+             title: "Click to expand"
          });
 //         google.maps.event.addListener(marker, 'mouseover', function(){
 //             infowindow.open(map,marker);
