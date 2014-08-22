@@ -49,6 +49,7 @@ def profile(request):
 
 
 def redirect_type(request):
+    # Shouldn't need to hardcode the usertype string here, want to use a variable you've defined on your model
     if(request.user.usertype=='Pet Sitter'):
         return redirect('pet_sitters')
     else:
@@ -61,6 +62,7 @@ def pet_sitters(request):
 
 @login_required
 def pet_owners(request):
+    # Shouldn't need to hardcode the usertype string here, want to use a variable you've defined on your model
     users = User.objects.filter(usertype='Pet Sitter')
     return render(request, 'pet_owners.html', {'users': users})
 
@@ -95,6 +97,7 @@ def upload_pet_profile(request):
             name = form.cleaned_data['name']
             age = form.cleaned_data['age']
             description = form.cleaned_data['description']
+            # Don't need to do this, your model form should take care of it
             Pet.objects.create(owner=owner, pet_image=pet_image, name=name, age=age, description=description)
             return redirect("/profile/")
 
