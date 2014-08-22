@@ -17,6 +17,7 @@ class PetSitterOwner_Form(UserCreationForm):
     usertype = forms.ChoiceField(label='Are you a:', widget=forms.RadioSelect, choices=CHOICES)
 
     class Meta:
+        # If you make this point to your user model it will automatically include your extra fields to save
         model = User
         fields = ['username', 'first_name', 'last_name', 'email','phone_number','address', 'city', 'state_abbr', 'zipcode','usertype', 'image']
 
@@ -24,6 +25,7 @@ class PetSitterOwner_Form(UserCreationForm):
 
 class PetProfile(forms.ModelForm):
     # owner = forms.CharField(max_length=1200)
+    # shouldn't need to define these since they're on your model and this is a model form
     pet_image = forms.ImageField()
     name = forms.CharField(max_length=30)
     age = forms.IntegerField()
